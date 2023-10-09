@@ -245,8 +245,6 @@ authRouter.post("/api/updatePatient", async (req, res) => {
 authRouter.post("/api/deleteAccount", async (req, res) => {
   try {
     const { email } = req.body;
-
-    // Find the user by email
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -280,7 +278,7 @@ authRouter.post("/api/deleteAccount", async (req, res) => {
   }
 });
 
-authRouter.get("/api/getDoctor", async (req, res) => {
+authRouter.get("/api/user/getAllDoctors", async (req, res) => {
     try {
         const doctors = await Doctor.find().populate('userId', ['name', 'email', 'role']);
         console.log(doctors)
@@ -289,8 +287,6 @@ authRouter.get("/api/getDoctor", async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
-
-
 
 
 
